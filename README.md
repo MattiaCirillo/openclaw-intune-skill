@@ -1,6 +1,6 @@
 # 🔧 OpenClaw Intune Skill – Complete Microsoft Intune Management
 
-> **Author:** [Simeone Cirillo – Kaffee & Code](https://kaffeeundcode.com)
+> **Author:** Mattia Cirillo
 > **License:** MIT
 > **Platform:** [OpenClaw](https://github.com/openclaw/openclaw)
 
@@ -72,9 +72,8 @@ export INTUNE_CLIENT_SECRET="your-client-secret"
 
 ## 🔗 Links
 
-- 🌐 [Kaffee & Code](https://kaffeeundcode.com)
 - 🦞 [OpenClaw](https://github.com/openclaw/openclaw)
 - 📖 [Microsoft Graph API Docs](https://learn.microsoft.com/en-us/graph/api/resources/intune-graph-overview)
 
 ---
-Made with ☕ by [Kaffee & Code](https://kaffeeundcode.com)
+Made with ☕ by Mattia Cirillo
