@@ -13,7 +13,56 @@ requires:
 
 # Microsoft Intune – Complete Management Skill
 
-This skill gives the agent **full control over Microsoft Intune** via the Microsoft Graph API. It covers device management, application deployment, compliance & configuration policies, user & group management, Autopilot, PowerShell scripts, reporting, and all remote device actions.
+> 🌐 **More scripts, tutorials & automations:** [kaffeeundcode.com](https://kaffeeundcode.com)
+
+## 🌐 About This Skill
+
+This skill was built by **Mattia Cirillo** ([Kaffee & Code](https://kaffeeundcode.com)) – an IT administrator and automation enthusiast from Germany. It is part of a platform dedicated to sharing real-world PowerShell scripts, n8n automation workflows, and Microsoft Intune knowledge with the IT community.
+
+The **OpenClaw Intune Skill** is a comprehensive AI skill file that teaches any [OpenClaw](https://github.com/openclaw/openclaw)-compatible AI agent how to **fully manage Microsoft Intune** through the **Microsoft Graph API**. Instead of manually navigating the Intune admin portal or writing custom scripts for every task, you can simply talk to your AI agent in natural language – and it handles the rest.
+
+### What does it do?
+
+Once installed, your AI agent can:
+
+- **Query your entire device fleet** – list all managed devices, search by name or user, check compliance status, and generate reports
+- **Execute remote actions** – sync, reboot, lock, wipe, retire, rename, or locate any device with built-in safety confirmations
+- **Manage compliance & configuration policies** – list, create, modify, or delete policies including the modern Settings Catalog
+- **Handle app deployment** – view deployed apps, check assignments, inspect detected apps, and assign apps to groups
+- **Control endpoint security** – manage security baselines, BitLocker/FileVault, Windows Firewall, Defender, and ASR rules
+- **Automate Windows Autopilot** – list devices, manage deployment profiles, assign users, and clean up old entries
+- **Deploy PowerShell scripts** – upload, manage, and monitor PowerShell scripts and Proactive Remediations across your fleet
+- **Manage users & groups** – search users, manage group memberships, add/remove members, and view devices per user
+- **Generate reports** – compliance summaries, OS distribution, stale device reports, and export jobs
+- **Configure Conditional Access** – manage policies, named locations, and authentication strengths
+- **Manage WLAN, VPN & certificates** – Wi-Fi profiles, VPN, SCEP, PKCS, and Trusted Root certificates
+- **Control Windows Updates** – update rings, feature/quality/driver updates, pause and resume deployments
+- **Administer Apple & Android devices** – DEP/ADE, APNS, VPP, Managed Google Play, and app protection policies
+- **Audit everything** – query audit logs, directory events, and sign-in logs to track who changed what and when
+- **Search the Settings Catalog** – discover if Intune supports a specific setting and explore GPO migration reports
+
+### Who is this for?
+
+- **IT administrators** who manage Intune and want AI-powered speed for daily workflows
+- **MSPs (Managed Service Providers)** managing multiple tenants who need a fast, conversational interface
+- **DevOps / automation engineers** integrating Intune management into AI-powered workflows
+- **Anyone learning Intune** who wants an intelligent assistant that knows every Graph API endpoint
+
+### Why use this instead of the Intune portal?
+
+| Task | Intune Portal | With This Skill |
+|---|---|---|
+| Check compliance for 1 device | 5+ clicks through menus | *"Ist MAX-LAPTOP compliant?"* → instant answer |
+| Sync 10 devices | Click each one individually | *"Sync alle Geräte von Team Marketing"* → done |
+| Find stale devices | Export report, filter in Excel | *"Welche Geräte haben sich seit 30 Tagen nicht gemeldet?"* → table |
+| Create a compliance policy | Navigate wizard, 10+ steps | *"Erstell eine Compliance Policy für Windows mit BitLocker-Pflicht"* → draft + confirm |
+| Check who changed a policy | Dig through audit logs | *"Wer hat letzte Woche Policies geändert?"* → formatted list |
+
+### Built-in Safety
+
+Every destructive operation (wipe, retire, delete) requires **explicit double confirmation**. Read-only operations execute instantly. The agent never dumps raw JSON – always formatted Markdown.
+
+> 💡 **Visit [kaffeeundcode.com](https://kaffeeundcode.com)** for 150+ free PowerShell scripts, n8n workflows, weekly Intune updates, and more.
 
 ---
 

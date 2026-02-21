@@ -5,7 +5,65 @@
 > **License:** MIT
 > **Platform:** [OpenClaw](https://github.com/openclaw/openclaw)
 
-A comprehensive OpenClaw skill that gives your AI agent **full control over Microsoft Intune** via the Microsoft Graph API.
+---
+
+## 🌐 About This Project
+
+This skill was built by **Mattia Cirillo**, an IT administrator and automation enthusiast from Germany. It is part of the **[Kaffee & Code](https://kaffeeundcode.com)** project – a platform dedicated to sharing real-world PowerShell scripts, n8n automation workflows, and Microsoft Intune knowledge with the IT community.
+
+### What is this Skill?
+
+The **OpenClaw Intune Skill** is a comprehensive AI skill file that teaches any [OpenClaw](https://github.com/openclaw/openclaw)-compatible AI agent how to **fully manage Microsoft Intune** through the Microsoft Graph API. Instead of manually navigating the Intune admin portal or writing custom scripts for every task, you can simply talk to your AI agent in natural language – and it handles the rest.
+
+### What does it actually do?
+
+Once installed, your AI agent gains the ability to:
+
+- **Query your entire device fleet** – list all managed devices, search by name or user, check compliance status, and generate reports
+- **Execute remote actions** – sync, reboot, lock, wipe, retire, rename, or locate any managed device with built-in safety confirmations
+- **Manage compliance & configuration policies** – list, create, modify, or delete compliance policies and configuration profiles (including the modern Settings Catalog)
+- **Handle app deployment** – view all deployed apps, check assignments, inspect detected apps across your fleet, and assign apps to groups
+- **Control endpoint security** – manage security baselines, BitLocker/FileVault encryption, Windows Firewall, Microsoft Defender Antivirus, and Attack Surface Reduction (ASR) rules
+- **Automate Windows Autopilot** – list Autopilot devices, manage deployment profiles, assign users, and clean up old device entries
+- **Deploy PowerShell scripts** – upload, manage, and monitor the execution of PowerShell scripts and Proactive Remediations (Health Scripts) across your fleet
+- **Manage users & groups** – search users, list group memberships, add/remove users from groups, and view all devices per user
+- **Generate reports & dashboards** – compliance summaries, OS distribution, stale device reports, non-compliance lists, and export jobs
+- **Configure Conditional Access** – list, create, and modify Conditional Access policies, named locations, and authentication strengths
+- **Manage network profiles** – WLAN (Wi-Fi), VPN, and certificate profiles (SCEP, PKCS, Trusted Root)
+- **Control Windows Updates** – manage update rings, feature updates, quality updates, driver updates, and pause/resume deployments
+- **Administer Apple devices** – DEP/ADE enrollment, APNS certificate monitoring, VPP token management, and Activation Lock bypass
+- **Manage Android Enterprise** – Managed Google Play, enrollment profiles, binding status, and app protection policies
+- **Audit everything** – query Intune audit logs, directory audit events, and sign-in logs to track who changed what and when
+- **Search the Settings Catalog** – find out if Intune supports a specific setting and explore GPO migration reports
+- **And much more** – Terms & Conditions, notification templates, enrollment restrictions, ESP, Windows Hello for Business, assignment filters, scope tags, and RBAC roles
+
+### Who is this for?
+
+This skill is perfect for:
+
+- **IT administrators** who manage Intune environments and want to speed up their daily workflows with AI
+- **MSPs (Managed Service Providers)** who manage multiple tenants and need a fast, conversational interface to Intune
+- **DevOps / automation engineers** who want to integrate Intune management into their AI-powered workflows
+- **Anyone learning Intune** who wants an intelligent assistant that knows every Graph API endpoint
+
+### Why use this instead of the Intune portal?
+
+| Task | Intune Portal | With this Skill |
+|---|---|---|
+| Check compliance for 1 device | 5+ clicks, navigate menus | *"Ist MAX-LAPTOP compliant?"* → instant answer |
+| Sync 10 devices | Click each one individually | *"Sync alle Geräte von Team Marketing"* → done |
+| Find stale devices | Export report, filter in Excel | *"Welche Geräte haben sich seit 30 Tagen nicht gemeldet?"* → table |
+| Create a compliance policy | Navigate wizard, 10+ steps | *"Erstell eine Compliance Policy für Windows mit BitLocker-Pflicht"* → draft + confirm |
+| Check who changed a policy | Dig through audit logs | *"Wer hat letzte Woche Policies geändert?"* → formatted list |
+
+### Built-in Safety
+
+This skill was designed with **enterprise safety** in mind. Every destructive operation (wipe, retire, delete) requires **explicit double confirmation** from the user before execution. Read-only operations (listing devices, checking compliance) execute instantly without prompts. The agent never dumps raw JSON – it always formats output as readable Markdown.
+
+> 💡 **More scripts, tutorials, and automation workflows:**
+> Visit **[kaffeeundcode.com](https://kaffeeundcode.com)** for 150+ PowerShell scripts, n8n workflows, weekly Intune updates, and more.
+
+---
 
 ## 🚀 What Can It Do? (22 Categories, 110+ Endpoints)
 
