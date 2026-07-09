@@ -1,7 +1,8 @@
 # Devices, Remote Actions, Categories, Scripts
 
 All paths relative to `https://graph.microsoft.com` (default `v1.0`).
-Call via `scripts/graph.sh METHOD "path" [json]`. Tier = safety tier from SKILL.md.
+Call via `scripts/graph.sh [--confirm|--confirm-name "NAME"] METHOD "path" [json]`.
+Tier = safety tier from SKILL.md.
 
 ## 1. Managed devices
 

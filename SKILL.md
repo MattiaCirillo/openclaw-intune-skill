@@ -11,7 +11,7 @@ description: >-
   asks anything like "zeig mir alle Geräte", "ist Gerät X compliant",
   "sync den Laptop von …", "wipe device", "create a compliance policy" —
   even if they don't say "Graph API" explicitly.
-version: "2.0.0"
+version: "1.0.3"
 author: Mattia Cirillo
 homepage: https://kaffeeundcode.com
 metadata:
@@ -22,6 +22,12 @@ metadata:
   optional_env:
     - INTUNE_READ_ONLY   # "true" = block all write operations
     - INTUNE_PROFILE     # tenant profile name for multi-tenant setups
+  executes:
+    - bash (scripts/get_token.sh, scripts/graph.sh — the only shell entry points)
+    - curl, jq (dependencies of the two scripts)
+  network:
+    - https://login.microsoftonline.com (token endpoint only)
+    - https://graph.microsoft.com (enforced allowlist — the wrapper refuses any other host)
 ---
 
 # Microsoft Intune – Graph API Management
@@ -40,8 +46,9 @@ throttling and the read-only guard:
 
 ```bash
 scripts/graph.sh GET  "/deviceManagement/managedDevices?\$select=deviceName,complianceState"
-scripts/graph.sh POST "/deviceManagement/managedDevices/{id}/syncDevice"
-scripts/graph.sh POST "/deviceManagement/deviceCompliancePolicies" '{"@odata.type": "...", ...}'
+scripts/graph.sh --confirm POST "/deviceManagement/managedDevices/{id}/syncDevice"
+scripts/graph.sh --confirm POST "/deviceManagement/deviceCompliancePolicies" '{"@odata.type": "...", ...}'
+scripts/graph.sh --confirm-name "DEVICE-NAME" POST "/deviceManagement/managedDevices/{id}/wipe"
 ```
 
 - Paths are relative to `https://graph.microsoft.com` and default to `v1.0`.
@@ -49,10 +56,10 @@ scripts/graph.sh POST "/deviceManagement/deviceCompliancePolicies" '{"@odata.typ
 - The wrapper follows `@odata.nextLink` automatically and merges all pages,
   retries on `429` honoring `Retry-After`, and adds
   `ConsistencyLevel: eventual` for advanced `/users` and `/groups` queries.
-- If the wrapper is unavailable, fall back to `scripts/get_token.sh` for a
-  cached token, or do the raw OAuth2 client-credentials flow against
-  `https://login.microsoftonline.com/{INTUNE_TENANT_ID}/oauth2/v2.0/token`
-  with scope `https://graph.microsoft.com/.default`.
+- It refuses non-Graph hosts and Graph endpoints outside the documented
+  Intune/Entra API areas. Never bypass the wrapper with raw `curl`.
+- `get_token.sh` only refreshes the protected token cache and returns its file
+  path. It never emits the bearer token itself.
 
 ### Environment
 
@@ -75,6 +82,9 @@ request is at least Tier 2, even if a reference file doesn't mark it.**
 
 Additional rules:
 
+- **Enforced confirmation:** after receiving confirmation, pass `--confirm`
+  for Tier 1/2 or `--confirm-name "EXACT NAME"` for Tier 3. The wrapper refuses
+  writes without the appropriate flag.
 - **Read-only mode:** if `INTUNE_READ_ONLY=true`, refuse every non-GET
   operation and say the skill is in read-only mode (the wrapper also
   enforces this).

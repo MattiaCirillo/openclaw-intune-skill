@@ -12,7 +12,7 @@ Sign-in logs and directory audits require the `AuditLog.Read.All` permission
 | 1.2 | OS distribution | GET `/deviceManagement/managedDevices?$select=operatingSystem` | Group by OS: "42 Windows, 15 iOS, 8 Android, 3 macOS" |
 | 1.3 | Stale devices | GET `/deviceManagement/managedDevices?$filter=lastSyncDateTime lt {ISO8601}&$select=deviceName,lastSyncDateTime,userPrincipalName` | Compute the cutoff date (e.g. 30 days ago) as `2026-06-06T00:00:00Z` — always ISO 8601 UTC with `Z` |
 | 1.4 | Non-compliant devices | GET `/deviceManagement/managedDevices?$filter=complianceState eq 'noncompliant'&$select=deviceName,complianceState,userPrincipalName,operatingSystem` | |
-| 1.5 | Export job (async, beta) | POST `/beta/deviceManagement/reports/exportJobs` — body `{"reportName":"Devices","filter":"","select":["DeviceName","OS","ComplianceState"]}` | Tier 0 (read-only export). Poll GET `/beta/deviceManagement/reports/exportJobs/{id}` until `status=completed`, then download from `url` |
+| 1.5 | Export job (async, beta) | POST `/beta/deviceManagement/reports/exportJobs` — body `{"reportName":"Devices","filter":"","select":["DeviceName","OS","ComplianceState"]}` | **Tier 1** (POST, but a read-only export — quick confirm). Poll GET `/beta/deviceManagement/reports/exportJobs/{id}` until `status=completed`, then download from `url` |
 
 Pagination matters here most: fleets >1000 devices span multiple pages —
 `graph.sh` merges them, but never summarize from a single raw page.

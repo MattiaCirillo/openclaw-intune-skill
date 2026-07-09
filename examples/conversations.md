@@ -36,4 +36,4 @@ Illustrative dialogues showing intended agent behaviour (safety tiers, formattin
 ## Multi-step workflow
 
 > **User:** Offboarde alle Geräte von Frau Weber
-> **Agent:** Anna Weber hat 2 Geräte: WEBER-NB01 (Windows) und iPhone-AW (iOS). Plan: 1) beide Geräte retiren (Firmendaten entfernen) oder wipen — was möchtest du? 2) Autopilot-Eintrag von WEBER-NB01 löschen, falls die Hardware das Unternehmen verlässt. 3) Anna aus den Gruppen "Intune-Users" und "VPN-Access" entfernen.
+> **Agent:** Anna Weber hat 2 Geräte: WEBER-NB01 (Windows) und iPhone-AW (iOS). Plan: 1) beide Geräte retiren (Firmendaten entfernen) oder wipen — was möchtest du? 2) Autopilot-Eintrag von WEBER-NB01 löschen, falls die Hardware das Unternehmen verlässt. 3) Anna aus den Gruppen "Intune-Users" und "VPN-Access" entfernen — jede Gruppenentfernung bestätige ich einzeln mit dir (Tier 2).

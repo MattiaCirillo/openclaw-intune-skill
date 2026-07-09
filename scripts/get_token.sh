@@ -2,8 +2,8 @@
 # get_token.sh — obtain (and cache) a Microsoft Graph app-only access token.
 #
 # Usage:
-#   scripts/get_token.sh            # prints a valid access token to stdout
-#   scripts/get_token.sh --force    # ignore cache, fetch a fresh token
+#   scripts/get_token.sh            # ensure a valid token is cached; print cache path
+#   scripts/get_token.sh --force    # ignore cache and fetch a fresh token
 #
 # Env (single tenant):
 #   INTUNE_TENANT_ID, INTUNE_CLIENT_ID, INTUNE_CLIENT_SECRET
@@ -19,7 +19,14 @@
 set -euo pipefail
 
 FORCE=0
-[[ "${1:-}" == "--force" ]] && FORCE=1
+for arg in "$@"; do
+  case "$arg" in
+    --force) FORCE=1 ;;
+    *)
+      echo "ERROR: unknown option '$arg'." >&2
+      exit 2 ;;
+  esac
+done
 
 # ---- resolve credentials (optionally via profile) --------------------------
 PROFILE="${INTUNE_PROFILE:-}"
@@ -56,7 +63,8 @@ if [[ $FORCE -eq 0 && -f "$CACHE_FILE" ]]; then
   exp="$(jq -r '.expires_at // 0' "$CACHE_FILE" 2>/dev/null || echo 0)"
   # refresh 5 min before actual expiry
   if [[ "$exp" =~ ^[0-9]+$ ]] && (( now < exp - 300 )); then
-    jq -r '.access_token' "$CACHE_FILE"
+    chmod 600 "$CACHE_FILE"
+    printf '%s\n' "$CACHE_FILE"
     exit 0
   fi
 fi
@@ -85,5 +93,6 @@ fi
 umask 077
 jq -n --arg t "$token" --argjson e "$(( now + ttl ))" \
   '{access_token:$t, expires_at:$e}' > "$CACHE_FILE"
+chmod 600 "$CACHE_FILE"
 
-echo "$token"
+printf '%s\n' "$CACHE_FILE"

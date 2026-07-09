@@ -52,8 +52,8 @@ Plan first, show the full plan, then execute step by step:
 3. For suspicious entries fetch details (`reporting.md` 2.4) and, where a
    policy still exists, its current state from `policies.md`.
 
-## 6. APNS / VPP / token health check (run proactively when Apple topics come up)
+## 6. APNS / VPP / token health check (offer when Apple topics come up — run only on user request)
 
-1. `platform.md` 3.3 (APNS) and 3.4 (VPP).
+1. Ask first ("Soll ich kurz APNS/VPP-Zertifikate prüfen?"), then `platform.md` 3.3 (APNS) and 3.4 (VPP).
 2. Warn on anything expiring within 30 days — an expired APNS certificate
    breaks all Apple device management tenant-wide.

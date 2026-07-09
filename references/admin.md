@@ -18,8 +18,10 @@ automatically.
 | 1.7 | Remove user from group | DELETE `/groups/{groupId}/members/{userId}/$ref` | 2 | |
 | 1.8 | Devices of a user | GET `/users/{userId}/managedDevices` | 0 | |
 
-Group changes can cascade (policy/app assignments follow group
-membership) — mention affected assignments in the Tier-2 summary when known.
+Group membership changes (1.6/1.7) are **Tier 2: never execute without an
+explicit confirmation** that names the user, the group, whether the group is
+static, and the likely downstream effects — group changes cascade into
+policy, app and Conditional Access assignments.
 
 ## 2. RBAC (Intune roles)
 

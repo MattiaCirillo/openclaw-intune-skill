@@ -128,6 +128,11 @@ Every operation is classified into a tier – and **anything that isn't a GET is
 
 Plus: read-only mode via env var, client secret is never printed or logged, batch actions list all affected objects first, output is always formatted Markdown – never raw JSON.
 
+The wrapper also enforces these boundaries: it only accepts documented
+Intune/Entra Graph endpoint families, requires `--confirm` for Tier 1/2
+writes, requires `--confirm-name "EXACT NAME"` for Tier 3, and never emits a
+raw bearer token.
+
 ## 💬 Example Usage
 
 > **You:** "Zeig mir alle Geräte die nicht compliant sind"

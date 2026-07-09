@@ -1,6 +1,26 @@
 # Changelog
 
-## 2.0.0 (2026-07-06)
+## 1.0.3 (2026-07-09) — security hardening (ClawHub scan response)
+
+- **graph.sh: host and endpoint allowlists.** Absolute URLs are only accepted
+  for `https://graph.microsoft.com` (needed for `@odata.nextLink`), and API
+  paths are restricted to the documented Intune/Entra endpoint families.
+  Other hosts and unrelated Graph APIs are refused before token acquisition.
+- **graph.sh: enforced confirmation tiers.** Tier 1/2 writes require
+  `--confirm`; Tier 3 actions require `--confirm-name "EXACT NAME"`.
+- **get_token.sh: no token on stdout.** The helper refreshes a mode-0600 cache
+  and outputs only the cache-file path. `graph.sh` reads the token directly
+  from that protected file, addressing PE3/HIGH.
+- Report export job reclassified Tier 0 → Tier 1 for consistency with the
+  non-GET catch-all rule.
+- Apple APNS/VPP health check changed from "run proactively" to "offer,
+  run only on user request" (SQP-1).
+- Group membership changes: explicit per-action confirmation requirement
+  spelled out in admin.md and the offboarding example (SQP-2, SDI-2).
+- Frontmatter now declares shell entry points, dependencies and the two
+  allowed network hosts (LP3).
+
+## 1.0.2 (2026-07-06)
 
 ### Breaking / structure
 - SKILL.md split: core file now contains only auth, safety tiers, Graph
